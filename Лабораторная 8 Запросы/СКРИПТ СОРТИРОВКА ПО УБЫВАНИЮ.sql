@@ -1,0 +1,1 @@
+SELECT * FROM book order by bk_id desc limit 5;

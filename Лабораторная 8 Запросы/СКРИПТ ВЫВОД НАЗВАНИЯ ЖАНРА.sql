@@ -1,0 +1,1 @@
+SELECT genre.gn_name, genrebook.gn_id, book.bk_name FROM ((genrebook INNER JOIN genre ON genrebook.gn_id = genre.gn_id) Inner join book on genrebook.bk_id = book.bk_id) WHERE genrebook.bk_id = '1' or genrebook.bk_id = '3'

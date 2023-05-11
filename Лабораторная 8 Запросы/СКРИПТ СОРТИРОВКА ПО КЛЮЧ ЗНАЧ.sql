@@ -1,0 +1,1 @@
+SELECT * FROM book WHERE cv_id='2' and bk_availability='1' order by bk_name
