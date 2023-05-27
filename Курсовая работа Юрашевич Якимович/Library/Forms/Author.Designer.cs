@@ -33,10 +33,9 @@ namespace Library.Forms
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.us_id = new System.Windows.Forms.TextBox();
-            this.us_name = new System.Windows.Forms.TextBox();
+            this.au_id = new System.Windows.Forms.TextBox();
+            this.au_name = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -75,7 +74,7 @@ namespace Library.Forms
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(534, 266);
+            this.button2.Location = new System.Drawing.Point(655, 266);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(115, 25);
             this.button2.TabIndex = 2;
@@ -85,21 +84,13 @@ namespace Library.Forms
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(655, 267);
+            this.button3.Location = new System.Drawing.Point(776, 267);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(115, 25);
             this.button3.TabIndex = 3;
             this.button3.Text = "Изменить";
             this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(776, 268);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(115, 25);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "Сохранить";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button5
             // 
@@ -111,21 +102,22 @@ namespace Library.Forms
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // us_id
+            // au_id
             // 
-            this.us_id.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.us_id.Location = new System.Drawing.Point(394, 375);
-            this.us_id.Name = "us_id";
-            this.us_id.Size = new System.Drawing.Size(255, 28);
-            this.us_id.TabIndex = 7;
+            this.au_id.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.au_id.Location = new System.Drawing.Point(394, 375);
+            this.au_id.Name = "au_id";
+            this.au_id.ReadOnly = true;
+            this.au_id.Size = new System.Drawing.Size(255, 28);
+            this.au_id.TabIndex = 7;
             // 
-            // us_name
+            // au_name
             // 
-            this.us_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.us_name.Location = new System.Drawing.Point(394, 421);
-            this.us_name.Name = "us_name";
-            this.us_name.Size = new System.Drawing.Size(255, 28);
-            this.us_name.TabIndex = 8;
+            this.au_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.au_name.Location = new System.Drawing.Point(394, 421);
+            this.au_name.Name = "au_name";
+            this.au_name.Size = new System.Drawing.Size(255, 28);
+            this.au_name.TabIndex = 8;
             // 
             // label2
             // 
@@ -204,10 +196,9 @@ namespace Library.Forms
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.us_name);
-            this.Controls.Add(this.us_id);
+            this.Controls.Add(this.au_name);
+            this.Controls.Add(this.au_id);
             this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -229,10 +220,9 @@ namespace Library.Forms
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.TextBox us_id;
-        private System.Windows.Forms.TextBox us_name;
+        private System.Windows.Forms.TextBox au_id;
+        private System.Windows.Forms.TextBox au_name;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.PictureBox pictureBox1;

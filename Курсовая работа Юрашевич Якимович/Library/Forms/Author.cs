@@ -59,8 +59,8 @@ namespace Library.Forms
             if(e.RowIndex >=0)
             {
                 DataGridViewRow row = dataGridView1.Rows[selectedRow];
-                us_id.Text = row.Cells[0].Value.ToString();
-                us_name.Text = row.Cells[1].Value.ToString();
+                au_id.Text = row.Cells[0].Value.ToString();
+                au_name.Text = row.Cells[1].Value.ToString();
                 
             }
         }
@@ -117,11 +117,52 @@ namespace Library.Forms
         {
             deleteRow();
         }
+        //ИЗМЕНЕНИЕ ДАННЫХ
+        private void Change()
+        {
+            var selectedRowIndex = dataGridView1.CurrentCell.RowIndex;
+            var id = au_id.Text;
+            var name = au_name.Text;
 
+            if ((au_id.Text != "") || (au_name.Text != ""))
+            {
+                dataGridView1.Rows[selectedRowIndex].SetValues(id, name);
+            }
+            else
+            {
+                MessageBox.Show("Строки не должны быть пустыми!");
+            }
+
+            dataBase.openConnection(connection);
+
+            MySqlCommand command = null;
+
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                string sqlCommand = $"UPDATE full.author SET au_id='{id}', au_pseudonym='{name}' WHERE au_id='{id}';";
+                command = new MySqlCommand(sqlCommand, dataBase.GetConnection(connection));
+            }
+
+            if (command.ExecuteNonQuery() != 1)
+            {
+                MessageBox.Show("Запись не была изменена!");
+            }
+            else
+            {
+                MessageBox.Show("Запись успешно изменена!");
+            }
+
+            dataBase.closeConnection(connection);
+        }
         private void button6_Click(object sender, EventArgs e)
         {
             Menu book = new Menu(mainFormP, childPanel);
             mainFormP.activeForm = FormsControls.OpenChildForm(book, this, childPanel);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Change();
         }
     }
 }

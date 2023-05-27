@@ -63,7 +63,7 @@ namespace Library.Forms
             dataBase.openConnection(connection);
             if (us_lastname.Text == "" || us_name.Text == "" || us_id.Text == "")
             {
-                MessageBox.Show("Заполните все поля");
+                MessageBox.Show("Заполните поля ID, Имя, Фамилия");
 
             }
             else

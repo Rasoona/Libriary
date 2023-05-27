@@ -37,16 +37,14 @@ namespace Library.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter("SELECT * FROM full.foreignbook;", connection);
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter("SELECT foreignbook.bk_id as Id, foreignbook.bk_name as Название, language.ln_name as Язык"+
+ " FROM((languagetranslator INNER JOIN language ON languagetranslator.ln_id = language.ln_id))"+
+ " Inner join foreignbook on languagetranslator.lt_id = foreignbook.lt_id;", connection);
             DataSet dataSet = new DataSet();
             dataAdapter.Fill(dataSet);
             dataGridView1.DataSource = dataSet.Tables[0];
         }
 
-        //private void ReadSingleRow(DataGridView dataGrid, IDataRecord record)
-        //{
-        //    dataGrid.Rows.Add(record.GetInt32(0), record.GetString(1), record.GetString(2), record.GetString(3));
-        //}
         //Копирование данных их таблицы в текстбоксы
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -57,13 +55,8 @@ namespace Library.Forms
                 DataGridViewRow row = dataGridView1.Rows[selectedRow];
                 bk_id.Text = row.Cells[0].Value.ToString();
                 bk_name.Text = row.Cells[1].Value.ToString();
-                au_id.Text = row.Cells[2].Value.ToString();
-               
-                pb_id.Text = row.Cells[3].Value.ToString();
-                cv_id.Text = row.Cells[4].Value.ToString();
-                bk_pages.Text = row.Cells[5].Value.ToString();
-                bk_publishyear.Text = row.Cells[6].Value.ToString();
-                bk_avail.Text = row.Cells[7].Value.ToString();
+                ln_name.Text = row.Cells[2].Value.ToString();
+             
             }
         }
 
@@ -74,7 +67,7 @@ namespace Library.Forms
             //string searchString = $"SELECT * FROM full.user where concat (us_id, us_name, us_lastname, us_note) like '%{textBox1.Text}%'; ";
             //MySqlCommand command = new MySqlCommand(searchString, dataBase.GetConnection(connection));
             //dataBase.openConnection(connection);
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter($"SELECT * FROM full.foreignbook where concat (bk_id, fb_id, au_id, bk_name, pb_id, cv_id, bk_pages, bk_publishyear, bk_availability, lt_id) like '%{textBox1.Text}%'; ", connection);
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter($"SELECT foreignbook.bk_id as Id, foreignbook.bk_name as Название, language.ln_name as Язык FROM((languagetranslator INNER JOIN language ON languagetranslator.ln_id = language.ln_id) Inner join foreignbook on languagetranslator.lt_id = foreignbook.lt_id) where concat(ln_name, foreignbook.bk_name) like '%{textBox1.Text}%'", connection);
             DataSet dataSet = new DataSet();
             dataAdapter.Fill(dataSet);
             dataGridView.DataSource = dataSet.Tables[0];

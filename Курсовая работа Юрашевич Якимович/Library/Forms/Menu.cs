@@ -42,11 +42,6 @@ namespace Library.Forms
             mainFormPanel.activeForm = FormsControls.OpenChildForm(book, this, childPanel);
         }
 
-        private void button9_Click(object sender, EventArgs e)
-        {
-            ForeignBook book = new ForeignBook(mainFormPanel, childPanel);
-            mainFormPanel.activeForm = FormsControls.OpenChildForm(book, this, childPanel);
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -76,6 +71,18 @@ namespace Library.Forms
         {
             Accounting accounting= new Accounting(mainFormPanel, childPanel);
             mainFormPanel.activeForm = FormsControls.OpenChildForm(accounting, this, childPanel);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ForeignBook book = new ForeignBook(mainFormPanel, childPanel);
+            mainFormPanel.activeForm = FormsControls.OpenChildForm(book, this, childPanel);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Login login = new Login(mainFormPanel, childPanel);
+            mainFormPanel.activeForm = FormsControls.OpenChildForm(login, this, childPanel);
         }
     }
 }

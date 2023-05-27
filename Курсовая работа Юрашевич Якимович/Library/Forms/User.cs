@@ -127,5 +127,49 @@ namespace Library.Forms
             Menu book = new Menu(mainFormP, childPanel);
             mainFormP.activeForm = FormsControls.OpenChildForm(book, this, childPanel);
         }
+        //ИЗМЕНЕНИЕ ДАННЫХ
+        private void Change()
+        {
+            var selectedRowIndex = dataGridView1.CurrentCell.RowIndex;
+            var id = us_id.Text;
+            var name = us_name.Text;
+            var lastname = us_lastname.Text;
+            var notes = us_notes.Text;
+
+            if ((us_id.Text != "") && (us_name.Text != "") && us_lastname.Text != "")
+            {
+                dataGridView1.Rows[selectedRowIndex].SetValues(id, name,lastname, notes);
+            }
+            else
+            {
+                MessageBox.Show("Строки не должны быть пустыми!");
+            }
+
+            dataBase.openConnection(connection);
+
+            MySqlCommand command = null;
+
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                string sqlCommand = $"UPDATE `full`.`user` SET `us_name` = '{name}', `us_lastname` = '{lastname}', `us_note` = '{notes}' WHERE (`us_id` = '{id}');";
+                command = new MySqlCommand(sqlCommand, dataBase.GetConnection(connection));
+            }
+
+            if (command.ExecuteNonQuery() != 1)
+            {
+                MessageBox.Show("Запись не была изменена!");
+            }
+            else
+            {
+                MessageBox.Show("Запись успешно изменена!");
+            }
+
+            dataBase.closeConnection(connection);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Change();
+        }
     }
 }

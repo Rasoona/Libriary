@@ -59,8 +59,8 @@ namespace Library.Forms
             if(e.RowIndex >=0)
             {
                 DataGridViewRow row = dataGridView1.Rows[selectedRow];
-                us_id.Text = row.Cells[0].Value.ToString();
-                us_name.Text = row.Cells[1].Value.ToString();
+                pb_id.Text = row.Cells[0].Value.ToString();
+                pb_name.Text = row.Cells[1].Value.ToString();
                 
             }
         }
@@ -122,6 +122,48 @@ namespace Library.Forms
         {
             Menu book = new Menu(mainFormP, childPanel);
             mainFormP.activeForm = FormsControls.OpenChildForm(book, this, childPanel);
+        }
+
+        //ИЗМЕНЕНИЕ ДАННЫХ
+        private void Change()
+        {
+            var selectedRowIndex = dataGridView1.CurrentCell.RowIndex;
+            var id = pb_id.Text;
+            var name = pb_name.Text;
+            
+            if ((pb_id.Text != "") && (pb_name.Text != ""))
+            {
+                dataGridView1.Rows[selectedRowIndex].SetValues(id, name);
+            }
+            else
+            {
+                MessageBox.Show("Строки не должны быть пустыми!");
+            }
+
+            dataBase.openConnection(connection);
+
+            MySqlCommand command = null;
+
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                string sqlCommand = $"UPDATE `full`.`publisher` SET `pb_name` = '{name}' WHERE (`pb_id` = '{id}');";
+                command = new MySqlCommand(sqlCommand, dataBase.GetConnection(connection));
+            }
+
+            if (command.ExecuteNonQuery() != 1)
+            {
+                MessageBox.Show("Запись не была изменена!");
+            }
+            else
+            {
+                MessageBox.Show("Запись успешно изменена!");
+            }
+
+            dataBase.closeConnection(connection);
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Change();
         }
     }
 }

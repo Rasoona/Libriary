@@ -91,3 +91,4 @@ D:\Учеба\3 курс\2 семестр\Курсовая\Курсовая ра
 D:\Учеба\3 курс\2 семестр\Курсовая\Курсовая работа Юрашевич Якимович\Library\obj\Debug\Library.Forms.Publisher.resources
 D:\Учеба\3 курс\2 семестр\Курсовая\Курсовая работа Юрашевич Якимович\Library\obj\Debug\Library.Forms.SeeBookInfo.resources
 D:\Учеба\3 курс\2 семестр\Курсовая\Курсовая работа Юрашевич Якимович\Library\obj\Debug\Library.Forms.Accounting.resources
+D:\Учеба\3 курс\2 семестр\Курсовая\Курсовая работа Юрашевич Якимович\Library\obj\Debug\Library.Forms.AddAccounting.resources

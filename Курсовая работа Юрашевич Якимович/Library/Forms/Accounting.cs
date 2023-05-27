@@ -59,25 +59,24 @@ namespace Library.Forms
             if(e.RowIndex >=0)
             {
                 DataGridViewRow row = dataGridView1.Rows[selectedRow];
-                us_id.Text = row.Cells[0].Value.ToString();
-                us_name.Text = row.Cells[1].Value.ToString();
-                us_lastname.Text = row.Cells[2].Value.ToString();
-                us_notes.Text = row.Cells[3].Value.ToString();
+                bu_id.Text = row.Cells[0].Value.ToString();
+                bk_id.Text = row.Cells[1].Value.ToString();
+                us_id.Text = row.Cells[2].Value.ToString();
+                extradict.Text = row.Cells[3].Value.ToString();
+                //returndate.Text = row.Cells[4].Value.ToString();
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            AddUserForm add = new AddUserForm();
+            AddAccounting add = new AddAccounting();
             add.Show();
         }
         //Поиск
         private void Search(DataGridView dataGridView)
         {
-            //dataGridView1.Rows.Clear();
-            //string searchString = $"SELECT * FROM full.user where concat (us_id, us_name, us_lastname, us_note) like '%{textBox1.Text}%'; ";
-            //MySqlCommand command = new MySqlCommand(searchString, dataBase.GetConnection(connection));
-            //dataBase.openConnection(connection);
+            
+            
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter($"SELECT * FROM full.bookuser where concat (bu_id, bk_id, us_id, bu_extraditionDate, bu_returnDate) like '%{textBox1.Text}%'; ", connection);
             DataSet dataSet = new DataSet();
             dataAdapter.Fill(dataSet);
@@ -126,6 +125,52 @@ namespace Library.Forms
         {
             Menu book = new Menu(mainFormP, childPanel);
             mainFormP.activeForm = FormsControls.OpenChildForm(book, this, childPanel);
+        }
+        //ИЗМЕНЕНИЕ ДАННЫХ
+        private void Change()
+        {
+           
+            var selectedRowIndex = dataGridView1.CurrentCell.RowIndex;
+            var id= bu_id.Text;
+            var bkid=bk_id.Text;
+            var usid=us_id.Text;
+            var ext = extradict.Text;
+            var returnn= returndate.Text;
+
+            if ((bu_id.Text != "") && (bk_id.Text != "") && (us_id.Text != ""))
+            {
+                dataGridView1.Rows[selectedRowIndex].SetValues(id, bkid, usid, ext, returnn);
+            }
+            else
+            {
+                MessageBox.Show("Строки не должны быть пустыми!");
+            }
+
+            dataBase.openConnection(connection);
+
+            MySqlCommand command = null;
+
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                string sqlCommand = $"UPDATE `full`.`bookuser` SET `bk_id` = '{id}', `us_id` = '{bkid}', `bu_returnDate` = '{returnn}' WHERE (`bu_id` = '{id}');;";
+                command = new MySqlCommand(sqlCommand, dataBase.GetConnection(connection));
+            }
+
+            if (command.ExecuteNonQuery() != 1)
+            {
+                MessageBox.Show("Запись не была изменена!");
+            }
+            else
+            {
+                MessageBox.Show("Запись успешно изменена!");
+            }
+
+            dataBase.closeConnection(connection);
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            Change();
         }
     }
 }

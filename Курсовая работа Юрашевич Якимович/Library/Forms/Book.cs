@@ -62,8 +62,10 @@ namespace Library.Forms
                 pb_id.Text = row.Cells[3].Value.ToString();
                 cv_id.Text = row.Cells[4].Value.ToString();
                 bk_pages.Text = row.Cells[5].Value.ToString();
-                bk_publishyear.Text = row.Cells[6].Value.ToString();
-                bk_avail.Text = row.Cells[7].Value.ToString();
+                //bk_publishyear.Text = row.Cells[6].Value.ToString();
+                if (row.Cells[7].Value.ToString() == "True")
+                { bk_avail.Checked = true; }
+                else { bk_avail.Checked = false; }
             }
         }
 
@@ -75,11 +77,9 @@ namespace Library.Forms
         //Поиск
         private void Search(DataGridView dataGridView)
         {
-            //dataGridView1.Rows.Clear();
-            //string searchString = $"SELECT * FROM full.user where concat (us_id, us_name, us_lastname, us_note) like '%{textBox1.Text}%'; ";
-            //MySqlCommand command = new MySqlCommand(searchString, dataBase.GetConnection(connection));
-            //dataBase.openConnection(connection);
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter($"SELECT * FROM full.book where concat (bk_id, bk_name, au_id, pb_id, cv_id, bk_pages, bk_publishyear, bk_availability) like '%{textBox1.Text}%'; ", connection);
+            
+            
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter($"SELECT * FROM full.book where concat (bk_id, bk_name, au_id, pb_id, cv_id, bk_pages, bk_publishyear) like '%{textBox1.Text}%'; ", connection);
             DataSet dataSet = new DataSet();
             dataAdapter.Fill(dataSet);
             dataGridView.DataSource = dataSet.Tables[0];
@@ -101,9 +101,12 @@ namespace Library.Forms
                 dataBase.openConnection(connection);
                 var id = Convert.ToInt32(dataGridView1.Rows[index].Cells[0].Value);
                 string sqlCommand = $"DELETE FROM `full`.`book` WHERE (`bk_id` = '{id}'); ";
+                string sqlCommand2 = $"DELETE FROM `full`.`genrebook` WHERE (`bk_id` = '{id}'); ";
                 MySqlCommand command = new MySqlCommand(sqlCommand, dataBase.GetConnection(connection));
-                if (command.ExecuteNonQuery() == 1)
+                MySqlCommand command2 = new MySqlCommand(sqlCommand2, dataBase.GetConnection(connection));
+                if (command2.ExecuteNonQuery() == 1 )
                 {
+                    command.ExecuteNonQuery();
                     MessageBox.Show("Удалено");
                     MySqlDataAdapter dataAdapter = new MySqlDataAdapter("SELECT * FROM full.book;", connection);
                     DataSet dataSet = new DataSet();
@@ -122,11 +125,62 @@ namespace Library.Forms
         {
             deleteRow();
         }
+        //ИЗМЕНЕНИЕ ДАННЫХ
+        private void Change()
+        {
+            var selectedRowIndex = dataGridView1.CurrentCell.RowIndex;
+            var id = bk_id.Text;
+            var name = bk_name.Text;
+            var auID = au_id.Text;
+            var cvID = cv_id.Text;
+            var pbID = pb_id.Text;
+            var pages = bk_pages.Text;
+            var publyear = bk_publishyear.Text;
+            int avail;
+            if (bk_avail.Checked == true)
+            { avail = 1; }
+            else { avail = 0; }
+
+            if ((bk_id.Text != "") || (bk_name.Text != ""))
+            {
+                dataGridView1.Rows[selectedRowIndex].SetValues(id, name, auID, pbID, cvID, pages, publyear, avail);
+            }
+            else
+            {
+                MessageBox.Show("Строки не должны быть пустыми!");
+            }
+
+            dataBase.openConnection(connection);
+
+            MySqlCommand command = null;
+
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                string sqlCommand = $"UPDATE `full`.`book` SET `bk_name` = '{name}', `au_id` = '{auID}', `pb_id` = '{pbID}', `cv_id` = '{cvID}', `bk_pages` = '{pages}', `bk_publishyear` = '{publyear}', `bk_availability` = '{avail}' WHERE (`bk_id` = '{id}');";
+                command = new MySqlCommand(sqlCommand, dataBase.GetConnection(connection));
+            }
+
+            if (command.ExecuteNonQuery() != 1)
+            {
+                MessageBox.Show("Запись не была изменена!");
+            }
+            else
+            {
+                MessageBox.Show("Запись успешно изменена!");
+            }
+
+            dataBase.closeConnection(connection);
+        }
 
         private void button6_Click(object sender, EventArgs e)
         {
             Menu book = new Menu(mainFormP, childPanel);
             mainFormP.activeForm = FormsControls.OpenChildForm(book, this, childPanel);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Change();
         }
     }
 }
