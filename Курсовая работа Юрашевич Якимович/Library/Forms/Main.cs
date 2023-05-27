@@ -25,7 +25,8 @@ namespace Library
         }
         private void Main_Load(object sender, EventArgs e)
         {
-            Forms.Login login = new Forms.Login(this, childPanel);
+            //Forms.Login login = new Forms.Login(this, childPanel);
+            Forms.Book login = new Forms.Book(this, childPanel);
             activeForm = FormsControls.OpenChildForm(login, activeForm, childPanel);
             // Forms.Menu menu = new Forms.Menu(this, childPanel);
             // activeForm = FormsControls.OpenChildForm(menu, activeForm, childPanel);

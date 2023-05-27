@@ -14,7 +14,7 @@ using MySql.Data.MySqlClient;
 
 namespace Library.Forms
 {
-    public partial class User : Form
+    public partial class Accounting : Form
 
     {
         DataBase dataBase = new DataBase();
@@ -22,12 +22,12 @@ namespace Library.Forms
         private Main mainFormP;
         MySqlConnection connection = new MySqlConnection("SERVER=127.0.0.1 ;DATABASE=full ;UID=root ;PASSWORD=kukuruzka ;");
         int selectedRow;
-        public User()
+        public Accounting()
         {
             
             InitializeComponent();
         }
-        public User(Main mainFormP, Panel childPanel)
+        public Accounting(Main mainFormP, Panel childPanel)
         {
             this.childPanel = childPanel;
             this.mainFormP = mainFormP;
@@ -37,7 +37,7 @@ namespace Library.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter("SELECT * FROM full.user;", connection);
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter("SELECT * FROM full.bookuser;", connection);
             DataSet dataSet = new DataSet();
             dataAdapter.Fill(dataSet);
             dataGridView1.DataSource = dataSet.Tables[0];
@@ -78,7 +78,7 @@ namespace Library.Forms
             //string searchString = $"SELECT * FROM full.user where concat (us_id, us_name, us_lastname, us_note) like '%{textBox1.Text}%'; ";
             //MySqlCommand command = new MySqlCommand(searchString, dataBase.GetConnection(connection));
             //dataBase.openConnection(connection);
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter($"SELECT * FROM full.user where concat (us_id, us_name, us_lastname, us_note) like '%{textBox1.Text}%'; ", connection);
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter($"SELECT * FROM full.bookuser where concat (bu_id, bk_id, us_id, bu_extraditionDate, bu_returnDate) like '%{textBox1.Text}%'; ", connection);
             DataSet dataSet = new DataSet();
             dataAdapter.Fill(dataSet);
             dataGridView.DataSource = dataSet.Tables[0];
@@ -99,12 +99,12 @@ namespace Library.Forms
                 //dataGridView1.Rows[index].Visible = false;
                 dataBase.openConnection(connection);
                 var id = Convert.ToInt32(dataGridView1.Rows[index].Cells[0].Value);
-                string sqlCommand = $"DELETE FROM `full`.`user` WHERE (`us_id` = '{id}'); ";
+                string sqlCommand = $"DELETE FROM `full`.`bookuser` WHERE (`bu_id` = '{id}'); ";
                 MySqlCommand command = new MySqlCommand(sqlCommand, dataBase.GetConnection(connection));
                 if (command.ExecuteNonQuery() == 1)
                 {
                     MessageBox.Show("Удалено");
-                    MySqlDataAdapter dataAdapter = new MySqlDataAdapter("SELECT * FROM full.user;", connection);
+                    MySqlDataAdapter dataAdapter = new MySqlDataAdapter("SELECT * FROM full.bookuser;", connection);
                     DataSet dataSet = new DataSet();
                     dataAdapter.Fill(dataSet);
                     dataGridView1.DataSource = dataSet.Tables[0];

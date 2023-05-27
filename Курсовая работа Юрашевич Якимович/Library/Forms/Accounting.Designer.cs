@@ -1,7 +1,7 @@
 ﻿
 namespace Library.Forms
 {
-    partial class User
+    partial class Accounting
     {
         /// <summary>
         /// Required designer variable.

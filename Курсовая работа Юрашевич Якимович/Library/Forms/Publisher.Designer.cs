@@ -1,7 +1,7 @@
 ﻿
 namespace Library.Forms
 {
-    partial class User
+    partial class Publisher
     {
         /// <summary>
         /// Required designer variable.
@@ -37,12 +37,8 @@ namespace Library.Forms
             this.button5 = new System.Windows.Forms.Button();
             this.us_id = new System.Windows.Forms.TextBox();
             this.us_name = new System.Windows.Forms.TextBox();
-            this.us_lastname = new System.Windows.Forms.TextBox();
-            this.us_notes = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -118,7 +114,7 @@ namespace Library.Forms
             // us_id
             // 
             this.us_id.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.us_id.Location = new System.Drawing.Point(367, 327);
+            this.us_id.Location = new System.Drawing.Point(394, 375);
             this.us_id.Name = "us_id";
             this.us_id.Size = new System.Drawing.Size(255, 28);
             this.us_id.TabIndex = 7;
@@ -126,34 +122,17 @@ namespace Library.Forms
             // us_name
             // 
             this.us_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.us_name.Location = new System.Drawing.Point(367, 373);
+            this.us_name.Location = new System.Drawing.Point(394, 421);
             this.us_name.Name = "us_name";
             this.us_name.Size = new System.Drawing.Size(255, 28);
             this.us_name.TabIndex = 8;
-            // 
-            // us_lastname
-            // 
-            this.us_lastname.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.us_lastname.Location = new System.Drawing.Point(367, 418);
-            this.us_lastname.Name = "us_lastname";
-            this.us_lastname.Size = new System.Drawing.Size(255, 28);
-            this.us_lastname.TabIndex = 9;
-            // 
-            // us_notes
-            // 
-            this.us_notes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.us_notes.Location = new System.Drawing.Point(367, 461);
-            this.us_notes.Multiline = true;
-            this.us_notes.Name = "us_notes";
-            this.us_notes.Size = new System.Drawing.Size(524, 60);
-            this.us_notes.TabIndex = 10;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(324, 330);
+            this.label2.Location = new System.Drawing.Point(351, 378);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(27, 24);
             this.label2.TabIndex = 11;
@@ -164,40 +143,18 @@ namespace Library.Forms
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(315, 373);
+            this.label3.Location = new System.Drawing.Point(291, 421);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 24);
+            this.label3.Size = new System.Drawing.Size(97, 24);
             this.label3.TabIndex = 12;
-            this.label3.Text = "Имя";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(270, 418);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 24);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Фамилия";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(270, 461);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 24);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "Заметки";
+            this.label3.Text = "Название";
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImage = global::Library.Properties.Resources.patient;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(224, 327);
+            this.pictureBox1.Location = new System.Drawing.Point(263, 325);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(66, 58);
             this.pictureBox1.TabIndex = 15;
@@ -233,7 +190,7 @@ namespace Library.Forms
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // User
+            // Publisher
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -245,12 +202,8 @@ namespace Library.Forms
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.us_notes);
-            this.Controls.Add(this.us_lastname);
             this.Controls.Add(this.us_name);
             this.Controls.Add(this.us_id);
             this.Controls.Add(this.button5);
@@ -260,7 +213,7 @@ namespace Library.Forms
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.DoubleBuffered = true;
-            this.Name = "User";
+            this.Name = "Publisher";
             this.Text = "User";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -280,12 +233,8 @@ namespace Library.Forms
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox us_id;
         private System.Windows.Forms.TextBox us_name;
-        private System.Windows.Forms.TextBox us_lastname;
-        private System.Windows.Forms.TextBox us_notes;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox pictureBox2;

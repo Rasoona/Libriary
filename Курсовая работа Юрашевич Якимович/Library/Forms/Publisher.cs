@@ -14,7 +14,7 @@ using MySql.Data.MySqlClient;
 
 namespace Library.Forms
 {
-    public partial class User : Form
+    public partial class Publisher : Form
 
     {
         DataBase dataBase = new DataBase();
@@ -22,12 +22,12 @@ namespace Library.Forms
         private Main mainFormP;
         MySqlConnection connection = new MySqlConnection("SERVER=127.0.0.1 ;DATABASE=full ;UID=root ;PASSWORD=kukuruzka ;");
         int selectedRow;
-        public User()
+        public Publisher()
         {
             
             InitializeComponent();
         }
-        public User(Main mainFormP, Panel childPanel)
+        public Publisher(Main mainFormP, Panel childPanel)
         {
             this.childPanel = childPanel;
             this.mainFormP = mainFormP;
@@ -37,7 +37,7 @@ namespace Library.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter("SELECT * FROM full.user;", connection);
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter("SELECT * FROM full.publisher;", connection);
             DataSet dataSet = new DataSet();
             dataAdapter.Fill(dataSet);
             dataGridView1.DataSource = dataSet.Tables[0];
@@ -51,7 +51,7 @@ namespace Library.Forms
         {
             dataGrid.Rows.Add(record.GetInt32(0), record.GetString(1), record.GetString(2), record.GetString(3));
         }
-
+        //сортировка
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             selectedRow = e.RowIndex;
@@ -61,24 +61,20 @@ namespace Library.Forms
                 DataGridViewRow row = dataGridView1.Rows[selectedRow];
                 us_id.Text = row.Cells[0].Value.ToString();
                 us_name.Text = row.Cells[1].Value.ToString();
-                us_lastname.Text = row.Cells[2].Value.ToString();
-                us_notes.Text = row.Cells[3].Value.ToString();
+                
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            AddUserForm add = new AddUserForm();
+            AddPublisher add = new AddPublisher();
             add.Show();
         }
         //Поиск
         private void Search(DataGridView dataGridView)
         {
-            //dataGridView1.Rows.Clear();
-            //string searchString = $"SELECT * FROM full.user where concat (us_id, us_name, us_lastname, us_note) like '%{textBox1.Text}%'; ";
-            //MySqlCommand command = new MySqlCommand(searchString, dataBase.GetConnection(connection));
-            //dataBase.openConnection(connection);
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter($"SELECT * FROM full.user where concat (us_id, us_name, us_lastname, us_note) like '%{textBox1.Text}%'; ", connection);
+            
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter($"SELECT * FROM full.publisher where concat (pb_id, pb_name) like '%{textBox1.Text}%'; ", connection);
             DataSet dataSet = new DataSet();
             dataAdapter.Fill(dataSet);
             dataGridView.DataSource = dataSet.Tables[0];
@@ -99,12 +95,12 @@ namespace Library.Forms
                 //dataGridView1.Rows[index].Visible = false;
                 dataBase.openConnection(connection);
                 var id = Convert.ToInt32(dataGridView1.Rows[index].Cells[0].Value);
-                string sqlCommand = $"DELETE FROM `full`.`user` WHERE (`us_id` = '{id}'); ";
+                string sqlCommand = $"DELETE FROM `full`.`publisher` WHERE (`pb_id` = '{id}'); ";
                 MySqlCommand command = new MySqlCommand(sqlCommand, dataBase.GetConnection(connection));
                 if (command.ExecuteNonQuery() == 1)
                 {
                     MessageBox.Show("Удалено");
-                    MySqlDataAdapter dataAdapter = new MySqlDataAdapter("SELECT * FROM full.user;", connection);
+                    MySqlDataAdapter dataAdapter = new MySqlDataAdapter("SELECT * FROM full.publisher;", connection);
                     DataSet dataSet = new DataSet();
                     dataAdapter.Fill(dataSet);
                     dataGridView1.DataSource = dataSet.Tables[0];

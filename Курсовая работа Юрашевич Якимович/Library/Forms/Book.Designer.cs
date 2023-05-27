@@ -1,7 +1,7 @@
 ﻿
 namespace Library.Forms
 {
-    partial class User
+    partial class Book
     {
         /// <summary>
         /// Required designer variable.
@@ -35,20 +35,26 @@ namespace Library.Forms
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.us_id = new System.Windows.Forms.TextBox();
-            this.us_name = new System.Windows.Forms.TextBox();
-            this.us_lastname = new System.Windows.Forms.TextBox();
-            this.us_notes = new System.Windows.Forms.TextBox();
+            this.bk_id = new System.Windows.Forms.TextBox();
+            this.bk_name = new System.Windows.Forms.TextBox();
+            this.au_id = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cv_id = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.pb_id = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.bk_pages = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.bk_publishyear = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.bk_avail = new System.Windows.Forms.TextBox();
             this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,45 +121,36 @@ namespace Library.Forms
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // us_id
+            // bk_id
             // 
-            this.us_id.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.us_id.Location = new System.Drawing.Point(367, 327);
-            this.us_id.Name = "us_id";
-            this.us_id.Size = new System.Drawing.Size(255, 28);
-            this.us_id.TabIndex = 7;
+            this.bk_id.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bk_id.Location = new System.Drawing.Point(213, 315);
+            this.bk_id.Name = "bk_id";
+            this.bk_id.Size = new System.Drawing.Size(164, 28);
+            this.bk_id.TabIndex = 7;
             // 
-            // us_name
+            // bk_name
             // 
-            this.us_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.us_name.Location = new System.Drawing.Point(367, 373);
-            this.us_name.Name = "us_name";
-            this.us_name.Size = new System.Drawing.Size(255, 28);
-            this.us_name.TabIndex = 8;
+            this.bk_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bk_name.Location = new System.Drawing.Point(213, 358);
+            this.bk_name.Name = "bk_name";
+            this.bk_name.Size = new System.Drawing.Size(255, 28);
+            this.bk_name.TabIndex = 8;
             // 
-            // us_lastname
+            // au_id
             // 
-            this.us_lastname.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.us_lastname.Location = new System.Drawing.Point(367, 418);
-            this.us_lastname.Name = "us_lastname";
-            this.us_lastname.Size = new System.Drawing.Size(255, 28);
-            this.us_lastname.TabIndex = 9;
-            // 
-            // us_notes
-            // 
-            this.us_notes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.us_notes.Location = new System.Drawing.Point(367, 461);
-            this.us_notes.Multiline = true;
-            this.us_notes.Name = "us_notes";
-            this.us_notes.Size = new System.Drawing.Size(524, 60);
-            this.us_notes.TabIndex = 10;
+            this.au_id.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.au_id.Location = new System.Drawing.Point(213, 403);
+            this.au_id.Name = "au_id";
+            this.au_id.Size = new System.Drawing.Size(255, 28);
+            this.au_id.TabIndex = 9;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(324, 330);
+            this.label2.Location = new System.Drawing.Point(180, 319);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(27, 24);
             this.label2.TabIndex = 11;
@@ -164,44 +161,22 @@ namespace Library.Forms
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(315, 373);
+            this.label3.Location = new System.Drawing.Point(110, 361);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 24);
+            this.label3.Size = new System.Drawing.Size(97, 24);
             this.label3.TabIndex = 12;
-            this.label3.Text = "Имя";
+            this.label3.Text = "Название";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(270, 418);
+            this.label4.Location = new System.Drawing.Point(116, 407);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 24);
+            this.label4.Size = new System.Drawing.Size(95, 24);
             this.label4.TabIndex = 13;
-            this.label4.Text = "Фамилия";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(270, 461);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 24);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "Заметки";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImage = global::Library.Properties.Resources.patient;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(224, 327);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(66, 58);
-            this.pictureBox1.TabIndex = 15;
-            this.pictureBox1.TabStop = false;
+            this.label4.Text = "ID автора";
             // 
             // textBox1
             // 
@@ -223,17 +198,112 @@ namespace Library.Forms
             this.pictureBox2.TabIndex = 17;
             this.pictureBox2.TabStop = false;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(540, 312);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(109, 24);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "ID обложки";
+            // 
+            // cv_id
+            // 
+            this.cv_id.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cv_id.Location = new System.Drawing.Point(655, 312);
+            this.cv_id.Name = "cv_id";
+            this.cv_id.Size = new System.Drawing.Size(255, 28);
+            this.cv_id.TabIndex = 20;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(491, 357);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(158, 24);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "ID издательства";
+            // 
+            // pb_id
+            // 
+            this.pb_id.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pb_id.Location = new System.Drawing.Point(655, 357);
+            this.pb_id.Name = "pb_id";
+            this.pb_id.Size = new System.Drawing.Size(255, 28);
+            this.pb_id.TabIndex = 22;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(499, 404);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(150, 24);
+            this.label5.TabIndex = 25;
+            this.label5.Text = "Кол-во страниц";
+            // 
+            // bk_pages
+            // 
+            this.bk_pages.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bk_pages.Location = new System.Drawing.Point(655, 404);
+            this.bk_pages.Name = "bk_pages";
+            this.bk_pages.Size = new System.Drawing.Size(255, 28);
+            this.bk_pages.TabIndex = 24;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(525, 454);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(124, 24);
+            this.label8.TabIndex = 27;
+            this.label8.Text = "Год издания";
+            // 
+            // bk_publishyear
+            // 
+            this.bk_publishyear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bk_publishyear.Location = new System.Drawing.Point(655, 454);
+            this.bk_publishyear.Name = "bk_publishyear";
+            this.bk_publishyear.Size = new System.Drawing.Size(255, 28);
+            this.bk_publishyear.TabIndex = 26;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(110, 454);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(101, 24);
+            this.label9.TabIndex = 29;
+            this.label9.Text = "В доступе";
+            // 
+            // bk_avail
+            // 
+            this.bk_avail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bk_avail.Location = new System.Drawing.Point(213, 450);
+            this.bk_avail.Name = "bk_avail";
+            this.bk_avail.Size = new System.Drawing.Size(67, 28);
+            this.bk_avail.TabIndex = 28;
+            // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(12, 491);
+            this.button6.Location = new System.Drawing.Point(12, 495);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(71, 30);
-            this.button6.TabIndex = 31;
+            this.button6.TabIndex = 30;
             this.button6.Text = "Назад";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // User
+            // Book
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -242,17 +312,24 @@ namespace Library.Forms
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1052, 533);
             this.Controls.Add(this.button6);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.bk_avail);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.bk_publishyear);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.bk_pages);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.pb_id);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.cv_id);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.us_notes);
-            this.Controls.Add(this.us_lastname);
-            this.Controls.Add(this.us_name);
-            this.Controls.Add(this.us_id);
+            this.Controls.Add(this.au_id);
+            this.Controls.Add(this.bk_name);
+            this.Controls.Add(this.bk_id);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -260,10 +337,9 @@ namespace Library.Forms
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.DoubleBuffered = true;
-            this.Name = "User";
+            this.Name = "Book";
             this.Text = "User";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -278,17 +354,24 @@ namespace Library.Forms
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.TextBox us_id;
-        private System.Windows.Forms.TextBox us_name;
-        private System.Windows.Forms.TextBox us_lastname;
-        private System.Windows.Forms.TextBox us_notes;
+        private System.Windows.Forms.TextBox bk_id;
+        private System.Windows.Forms.TextBox bk_name;
+        private System.Windows.Forms.TextBox au_id;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox cv_id;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox pb_id;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox bk_pages;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox bk_publishyear;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox bk_avail;
         private System.Windows.Forms.Button button6;
     }
 }
