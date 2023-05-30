@@ -166,7 +166,7 @@ namespace Library.Forms
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(253, 52);
             this.button4.TabIndex = 13;
-            this.button4.Text = "Создать запись о взятии книги";
+            this.button4.Text = "Создать запись о взятии/возврате книги";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 

@@ -47,8 +47,8 @@ namespace Library.Forms
 
 
             string sqlCommand = $"INSERT INTO `full`.`bookuser` (`bu_id`, `bk_id`, `us_id`, `bu_extraditionDate`, `bu_returnDate`) VALUES ('{idBU}', '{idBK}', '{idUS}', '{extrD}', '{ret}'); ";
-            MySqlCommand command = new MySqlCommand(sqlCommand, dataBase.GetConnection(connection));
-            dataBase.openConnection(connection);
+            MySqlCommand command = new MySqlCommand(sqlCommand, dataBase.GetConnection(dataBase.connectionLib));
+            dataBase.openConnection(dataBase.connectionLib);
             if (bu_id.Text == "" || bk_id.Text == "" || us_id.Text == "" || extrd.Text == "")
             {
                 MessageBox.Show("Заполните все поля");
@@ -56,33 +56,54 @@ namespace Library.Forms
             }
             else
             {
-                if (checkUser() ==false && command.ExecuteNonQuery() == 1)
+                if (checkAcc() ==false && command.ExecuteNonQuery() == 1)
                 {
                     MessageBox.Show("Регистрация прошла успешно");
                   
                 }
                 else MessageBox.Show("Произошла ошибка");
-                dataBase.closeConnection(connection);
+                dataBase.closeConnection(dataBase.connectionLib);
             }
 
 
         }
-        private Boolean checkUser()
+        private Boolean checkAcc()
         {
-            int idBU = Convert.ToInt32(bu_id.Text); 
+            int idBU = Convert.ToInt32(bu_id.Text);
+            int idBK = Convert.ToInt32(bk_id.Text);
+            int idUS = Convert.ToInt32(us_id.Text);
 
-                MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
                 DataTable dataTable = new DataTable();
-                string sqlcm = $"SELECT * FROM full.bookuser where bu_id = '{idBU}';";
-                MySqlCommand command = new MySqlCommand(sqlcm, dataBase.GetConnection(connection));
-                dataAdapter.SelectCommand = command;
-                dataAdapter.Fill(dataTable);
-                if (dataTable.Rows.Count > 0)
-                {
-                    MessageBox.Show("Запись с таким id уже существует!");
-                    return true;
-                }
-                else return false;
+            MySqlDataAdapter dataAdapter1 = new MySqlDataAdapter();
+            DataTable dataTable1 = new DataTable();
+            MySqlDataAdapter dataAdapter2 = new MySqlDataAdapter();
+            DataTable dataTable2 = new DataTable();
+            string sqlcm = $"SELECT * FROM full.bookuser where bu_id = '{idBU}';";
+            string sqlcm1 = $"SELECT * FROM full.book where bk_id = '{idBK}';";
+            string sqlcm2 = $"SELECT * FROM full.user where us_id = '{idUS}';";
+
+
+            MySqlCommand command = new MySqlCommand(sqlcm, dataBase.GetConnection(dataBase.connectionLib));
+            MySqlCommand command1 = new MySqlCommand(sqlcm1, dataBase.GetConnection(dataBase.connectionLib));
+            MySqlCommand command2 = new MySqlCommand(sqlcm2, dataBase.GetConnection(dataBase.connectionLib));
+            dataAdapter.SelectCommand = command;
+            dataAdapter.Fill(dataTable);
+            dataAdapter1.SelectCommand = command1;
+            dataAdapter1.Fill(dataTable1); 
+            dataAdapter2.SelectCommand = command2;
+            dataAdapter2.Fill(dataTable2);
+            if (dataTable.Rows.Count > 0)
+            {
+                MessageBox.Show("Запись с таким id уже существует!");
+                return true;
+            }
+            else if (dataTable1.Rows.Count ==0 || (dataTable2.Rows.Count == 0))
+            { MessageBox.Show("Книги или пользователя с таким id нет");
+                return true;
+            
+            }
+            else return false;
             }
 
         private void AddAccounting_Load(object sender, EventArgs e)

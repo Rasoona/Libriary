@@ -17,6 +17,7 @@ namespace Library.Forms
     public partial class Book : Form
 
     {
+        
         DataBase dataBase = new DataBase();
         private Panel childPanel;
         private Main mainFormP;
@@ -101,12 +102,11 @@ namespace Library.Forms
                 dataBase.openConnection(connection);
                 var id = Convert.ToInt32(dataGridView1.Rows[index].Cells[0].Value);
                 string sqlCommand = $"DELETE FROM `full`.`book` WHERE (`bk_id` = '{id}'); ";
-                string sqlCommand2 = $"DELETE FROM `full`.`genrebook` WHERE (`bk_id` = '{id}'); ";
                 MySqlCommand command = new MySqlCommand(sqlCommand, dataBase.GetConnection(connection));
-                MySqlCommand command2 = new MySqlCommand(sqlCommand2, dataBase.GetConnection(connection));
-                if (command2.ExecuteNonQuery() == 1 )
+                
+                if (command.ExecuteNonQuery() == 1)
                 {
-                    command.ExecuteNonQuery();
+                    
                     MessageBox.Show("Удалено");
                     MySqlDataAdapter dataAdapter = new MySqlDataAdapter("SELECT * FROM full.book;", connection);
                     DataSet dataSet = new DataSet();
@@ -114,12 +114,13 @@ namespace Library.Forms
                     dataGridView1.DataSource = dataSet.Tables[0];
 
                 }
-                else { }
+                else { MessageBox.Show("Не удалено"); }
                 dataBase.closeConnection(connection);
             }
             else { }
             
         }
+       
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -128,6 +129,7 @@ namespace Library.Forms
         //ИЗМЕНЕНИЕ ДАННЫХ
         private void Change()
         {
+            
             var selectedRowIndex = dataGridView1.CurrentCell.RowIndex;
             var id = bk_id.Text;
             var name = bk_name.Text;
@@ -141,7 +143,7 @@ namespace Library.Forms
             { avail = 1; }
             else { avail = 0; }
 
-            if ((bk_id.Text != "") || (bk_name.Text != ""))
+            if ((bk_id.Text != "") && (bk_name.Text != "") && (au_id.Text != "") && (cv_id.Text != "") && (pb_id.Text != ""))
             {
                 dataGridView1.Rows[selectedRowIndex].SetValues(id, name, auID, pbID, cvID, pages, publyear, avail);
             }
@@ -159,15 +161,17 @@ namespace Library.Forms
                 string sqlCommand = $"UPDATE `full`.`book` SET `bk_name` = '{name}', `au_id` = '{auID}', `pb_id` = '{pbID}', `cv_id` = '{cvID}', `bk_pages` = '{pages}', `bk_publishyear` = '{publyear}', `bk_availability` = '{avail}' WHERE (`bk_id` = '{id}');";
                 command = new MySqlCommand(sqlCommand, dataBase.GetConnection(connection));
             }
-
-            if (command.ExecuteNonQuery() != 1)
-            {
-                MessageBox.Show("Запись не была изменена!");
-            }
-            else
-            {
-                MessageBox.Show("Запись успешно изменена!");
-            }
+            
+          
+                if (command.ExecuteNonQuery() != 1)
+                {
+                    MessageBox.Show("Запись не была изменена!");
+                }
+                else
+                {
+                    MessageBox.Show("Запись успешно изменена!");
+                }
+            
 
             dataBase.closeConnection(connection);
         }
@@ -181,6 +185,11 @@ namespace Library.Forms
         private void button3_Click(object sender, EventArgs e)
         {
             Change();
+        }
+
+        private void dataGridView1_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            MessageBox.Show("Заполните все поля для изменения!");
         }
     }
 }

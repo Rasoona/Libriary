@@ -16,7 +16,7 @@ namespace Library.Forms
     public partial class SignUp : Form
     {
         DataBase dataBase = new DataBase();
-        private MySqlConnection connectionUsers = new MySqlConnection("SERVER=127.0.0.1 ;DATABASE=libraryusers ;UID=root ;PASSWORD=kukuruzka ;");
+        //private MySqlConnection connectionUsers = new MySqlConnection("SERVER=127.0.0.1 ;DATABASE=libraryusers ;UID=root ;PASSWORD=kukuruzka ;");
         private Panel childPanel;
         private Main mainFormPanel;
         public SignUp(Main mainFormPanel, Panel childPanel)
@@ -63,12 +63,10 @@ namespace Library.Forms
         {
             var loginUser = loginbox.Text;
             var passwUser = passwordbox.Text;
-
-            
-             //MySqlDataAdapter dataAdapter = new MySqlDataAdapter($"INSERT INTO `libraryusers`.`lib_user` (`user_login`, `user_password`) VALUES ('{loginUser}', '{passwUser}');", connectionUsers);
+                        
             string sqlCommand = $"INSERT INTO `libraryusers`.`lib_user` (`user_login`, `user_password`) VALUES('{loginUser}', '{passwUser}'); ";
-            MySqlCommand command = new MySqlCommand(sqlCommand, dataBase.GetConnection(connectionUsers));
-            dataBase.openConnection(connectionUsers);
+            MySqlCommand command = new MySqlCommand(sqlCommand, dataBase.GetConnection(dataBase.connectionUsers));
+            dataBase.openConnection(dataBase.connectionUsers);
             if (loginbox.Text == "" || passwordbox.Text == "")
             {
                 MessageBox.Show("Заполните все поля");
@@ -83,7 +81,7 @@ namespace Library.Forms
                     mainFormPanel.activeForm = FormsControls.OpenChildForm(login, this, childPanel);
                 }
                 else MessageBox.Show("Произошла ошибка");
-                dataBase.closeConnection(connectionUsers);
+                dataBase.closeConnection(dataBase.connectionUsers);
             }
         }
 
@@ -95,7 +93,7 @@ namespace Library.Forms
             MySqlDataAdapter dataAdapter = new MySqlDataAdapter();
             DataTable dataTable = new DataTable();
             string sqlcm = $"SELECT * FROM libraryusers.lib_user where user_login = '{loginUser}' and user_password = '{passwUser}';";
-            MySqlCommand command = new MySqlCommand(sqlcm, dataBase.GetConnection(connectionUsers));
+            MySqlCommand command = new MySqlCommand(sqlcm, dataBase.GetConnection(dataBase.connectionUsers));
             dataAdapter.SelectCommand = command;
             dataAdapter.Fill(dataTable);
             if (dataTable.Rows.Count > 0)

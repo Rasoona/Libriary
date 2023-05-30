@@ -10,11 +10,12 @@ using System.Data;
 
 namespace Library.Classes
 {
-    class DataBase
+    public class DataBase
     {
-        private MySqlConnection connectionLib = new MySqlConnection("SERVER=127.0.0.1 ;DATABASE=full ;UID=root ;PASSWORD=kukuruzka ;");
-        private MySqlConnection connectionUsers = new MySqlConnection("SERVER=127.0.0.1 ;DATABASE=libraryusers ;UID=root ;PASSWORD=kukuruzka ;");
+        public MySqlConnection connectionLib = new MySqlConnection("SERVER=127.0.0.1 ;DATABASE=full ;UID=root ;PASSWORD=kukuruzka ;");
+        public MySqlConnection connectionUsers = new MySqlConnection("SERVER=127.0.0.1 ;DATABASE=libraryusers ;UID=root ;PASSWORD=kukuruzka ;");
 
+       
 
         public void openConnection(MySqlConnection sqlConnection) 
         {
@@ -34,12 +35,13 @@ namespace Library.Classes
 
         }
 
-        public MySqlConnection GetConnection( MySqlConnection sqlConnection) 
+        public MySqlConnection GetConnection(MySqlConnection sqlConnection)
         {
             return sqlConnection;
         }
 
-       
+
+
 
 
 

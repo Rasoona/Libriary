@@ -34,21 +34,7 @@ namespace Library.Forms
     
         }
 
-        private void us_name_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void us_id_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void us_lastname_TextChanged(object sender, EventArgs e)
-        {
-           
-        }
-
+ 
         private void button1_Click(object sender, EventArgs e)
         {
             int idBK =Convert.ToInt32(bk_id.Text);
@@ -60,27 +46,17 @@ namespace Library.Forms
             int pagesBK = Convert.ToInt32(bk_pages.Text);
             var publYear = bk_publishyear.Text;
             int avail = Convert.ToInt32(bk_avail.Tag);
-
-
-
-
             string sqlCommand = $"INSERT INTO `full`.`book` (`bk_id`, `bk_name`, `au_id`, `pb_id`, `cv_id`, `bk_pages`, `bk_publishyear`, `bk_availability`) VALUES ('{idBK}', '{nameBook}', '{auID}', '{pb_ID}', '{cv_ID}', '{pagesBK}', '{publYear}', '{avail}'); ";
             string addGenre = $"INSERT INTO `full`.`genrebook` (`bk_id`, `gn_id`) VALUES ('{idBK}', '{gn_ID}');";
             MySqlCommand command = new MySqlCommand(sqlCommand, dataBase.GetConnection(connection));
             MySqlCommand command2 = new MySqlCommand(addGenre, dataBase.GetConnection(connection));
             dataBase.openConnection(connection);
-            if (bk_name.Text == "" || bk_id.Text == "")
-            {
-                MessageBox.Show("Введите ID и название книги");
-
-            }
+            if (bk_name.Text == "" || bk_id.Text == "" || au_id.Text =="" || pb_id.Text == "" || cv_id.Text == "" || gn_id.Text =="")
+            { MessageBox.Show("Заполните поля");}
             else
             {
                 if (checkUser() ==false && command.ExecuteNonQuery() == 1 && command2.ExecuteNonQuery() == 1)
-                {
-                    MessageBox.Show("Регистрация прошла успешно");
-                  
-                }
+                {MessageBox.Show("Регистрация прошла успешно");}
                 else MessageBox.Show("Произошла ошибка");
                 dataBase.closeConnection(connection);
             }

@@ -15,8 +15,9 @@ namespace Library.Forms
 {
     public partial class Login : Form
     {
+        DataBase dataBase = new DataBase();
 
-        private MySqlConnection connectionUsers = new MySqlConnection("SERVER=127.0.0.1 ;DATABASE=libraryusers ;UID=root ;PASSWORD=kukuruzka ;");
+        //private MySqlConnection connectionUsers = new MySqlConnection("SERVER=127.0.0.1 ;DATABASE=libraryusers ;UID=root ;PASSWORD=kukuruzka ;");
         private Panel childPanel;
         private Main mainFormPanel;
         public Login(Main mainFormPanel, Panel childPanel)
@@ -42,7 +43,7 @@ namespace Library.Forms
             var loginUser = loginbox.Text;
             var passwUser = passwordbox.Text;
 
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter($"SELECT * FROM libraryusers.lib_user where user_login = '{loginUser}' and user_password = '{passwUser}';", connectionUsers);
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter($"SELECT * FROM libraryusers.lib_user where user_login = '{loginUser}' and user_password = '{passwUser}';", dataBase.connectionUsers);
             DataSet dataSet = new DataSet();
             DataTable dataTable = new DataTable();
             dataAdapter.Fill(dataTable);

@@ -104,7 +104,7 @@ namespace Library.Forms
             this.bk_name.Name = "bk_name";
             this.bk_name.Size = new System.Drawing.Size(255, 28);
             this.bk_name.TabIndex = 19;
-            this.bk_name.TextChanged += new System.EventHandler(this.us_name_TextChanged);
+           
             // 
             // button1
             // 
@@ -126,7 +126,7 @@ namespace Library.Forms
             this.bk_id.Size = new System.Drawing.Size(95, 27);
             this.bk_id.TabIndex = 27;
             this.bk_id.ValidatingType = typeof(int);
-            this.bk_id.TextChanged += new System.EventHandler(this.us_id_TextChanged);
+      
             // 
             // label6
             // 

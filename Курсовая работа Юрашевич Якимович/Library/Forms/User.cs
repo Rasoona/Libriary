@@ -20,7 +20,7 @@ namespace Library.Forms
         DataBase dataBase = new DataBase();
         private Panel childPanel;
         private Main mainFormP;
-        MySqlConnection connection = new MySqlConnection("SERVER=127.0.0.1 ;DATABASE=full ;UID=root ;PASSWORD=kukuruzka ;");
+        //MySqlConnection connection = new MySqlConnection("SERVER=127.0.0.1 ;DATABASE=full ;UID=root ;PASSWORD=kukuruzka ;");
         int selectedRow;
         public User()
         {
@@ -37,7 +37,7 @@ namespace Library.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter("SELECT * FROM full.user;", connection);
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter("SELECT * FROM full.user;", dataBase.connectionLib);
             DataSet dataSet = new DataSet();
             dataAdapter.Fill(dataSet);
             dataGridView1.DataSource = dataSet.Tables[0];
@@ -78,7 +78,7 @@ namespace Library.Forms
             //string searchString = $"SELECT * FROM full.user where concat (us_id, us_name, us_lastname, us_note) like '%{textBox1.Text}%'; ";
             //MySqlCommand command = new MySqlCommand(searchString, dataBase.GetConnection(connection));
             //dataBase.openConnection(connection);
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter($"SELECT * FROM full.user where concat (us_id, us_name, us_lastname, us_note) like '%{textBox1.Text}%'; ", connection);
+            MySqlDataAdapter dataAdapter = new MySqlDataAdapter($"SELECT * FROM full.user where concat (us_id, us_name, us_lastname, us_note) like '%{textBox1.Text}%'; ", dataBase.connectionLib);
             DataSet dataSet = new DataSet();
             dataAdapter.Fill(dataSet);
             dataGridView.DataSource = dataSet.Tables[0];
@@ -97,21 +97,21 @@ namespace Library.Forms
             {
                 int index = dataGridView1.CurrentCell.RowIndex;
                 //dataGridView1.Rows[index].Visible = false;
-                dataBase.openConnection(connection);
+                dataBase.openConnection(dataBase.connectionLib);
                 var id = Convert.ToInt32(dataGridView1.Rows[index].Cells[0].Value);
                 string sqlCommand = $"DELETE FROM `full`.`user` WHERE (`us_id` = '{id}'); ";
-                MySqlCommand command = new MySqlCommand(sqlCommand, dataBase.GetConnection(connection));
+                MySqlCommand command = new MySqlCommand(sqlCommand, dataBase.GetConnection(dataBase.connectionLib));
                 if (command.ExecuteNonQuery() == 1)
                 {
                     MessageBox.Show("Удалено");
-                    MySqlDataAdapter dataAdapter = new MySqlDataAdapter("SELECT * FROM full.user;", connection);
+                    MySqlDataAdapter dataAdapter = new MySqlDataAdapter("SELECT * FROM full.user;", dataBase.connectionLib);
                     DataSet dataSet = new DataSet();
                     dataAdapter.Fill(dataSet);
                     dataGridView1.DataSource = dataSet.Tables[0];
 
                 }
                 else { }
-                dataBase.closeConnection(connection);
+                dataBase.closeConnection(dataBase.connectionLib);
             }
             else { }
             
@@ -145,14 +145,14 @@ namespace Library.Forms
                 MessageBox.Show("Строки не должны быть пустыми!");
             }
 
-            dataBase.openConnection(connection);
+            dataBase.openConnection(dataBase.connectionLib);
 
             MySqlCommand command = null;
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 string sqlCommand = $"UPDATE `full`.`user` SET `us_name` = '{name}', `us_lastname` = '{lastname}', `us_note` = '{notes}' WHERE (`us_id` = '{id}');";
-                command = new MySqlCommand(sqlCommand, dataBase.GetConnection(connection));
+                command = new MySqlCommand(sqlCommand, dataBase.GetConnection(dataBase.connectionLib));
             }
 
             if (command.ExecuteNonQuery() != 1)
@@ -164,7 +164,7 @@ namespace Library.Forms
                 MessageBox.Show("Запись успешно изменена!");
             }
 
-            dataBase.closeConnection(connection);
+            dataBase.closeConnection(dataBase.connectionLib);
         }
 
         private void button3_Click(object sender, EventArgs e)
